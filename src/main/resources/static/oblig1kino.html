@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="kino1oblig.js"></script>
+
+</head>
+<body>
+<h1>Cinema Ticket Booking</h1>
+
+<table>
+
+    <tr><td>Velg Film:</td>
+        <td><select id="filmvalg">
+            <option>Velg en Film</option>
+            <option>Narnia</option>
+            <option>Cars</option>
+            <option>Mowgli</option>
+        </select>
+            <span id="filmvalgError"></span>
+        </td></tr>
+
+
+    <tr><td>Fornavn</td><td><input type="text" id="fornavn"/><span id="fornavnError"></span></td></tr>
+    <tr><td>Etternavn</td><td><input type="text" id="etternavn"/><span id="etternavnError"></span></td></tr>
+    <tr><td>Antall</td><td><input type="number" id="antall"/><span id="antallError"></span></td></tr>
+    <tr><td>Telefonnr</td><td><input type="tel" id="telefonnr"/><span id="telefonnrError"></span></td></tr>
+    <tr><td>Epost</td><td><input type="text" id="epost"/><span id="epostError"></span></td></tr>
+
+    <tr><td><button onclick="buyTicket()">Buy tickets</button></td></tr>
+</table>
+
+<h2>Ticket reservations</h2>
+
+<div id="cinemaRegister"></div>
+
+<button onclick="deleteAllData()">Delete all data</button>
+
+</body>
+</html>
