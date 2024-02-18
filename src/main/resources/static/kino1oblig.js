@@ -1,20 +1,26 @@
-
+//Oppretter array for å lagre informasjon om billetkjøpere
 const cinemaRegister=[];
 
+//Funksjon for å kjøpe billetter kaller på funskjonene slik at jeg kan lage en knapp senere
 function buyTicket(){
     register();
     showCinema();
 }
-function showCinema(){
 
+//Funksjon for å vise kinoregisteret
+function showCinema(){
+// Sjekker om kinoregisteret er tomt, hvis det er det, tømmer vi HTML-innholdet og returnerer
     if (cinemaRegister.length===0){
         document.getElementById("cinemaRegister").innerHTML="";
         return;
     }
 
+    // Oppretter tabell for å vise kinoregisteret
     let ut = "<table><tr>" +
         "<th>Film</th><th>Fornavn</th><th>Etternavn</th><th>Antall</th><th>Telefonnr</th><th>Epost</th>" +
         "</tr>";
+
+    //legger til hver person i tabellen
     for (let p of cinemaRegister){
         ut+="<tr>";
         ut+="<td>"+p.film+"</td><td>"+p.fornavn+"</td><td>"+p.etternavn+"</td><td>"+p.antall+"</td><td>"+p.telefonnr+"</td><td>"+p.epost+"</td>";
@@ -23,6 +29,7 @@ function showCinema(){
 
     document.getElementById("cinemaRegister").innerHTML=ut;
 }
+//Funksjon for å slette all data i tabellen
 function deleteAllData(){
     cinemaRegister.length=0;
 
@@ -30,16 +37,18 @@ function deleteAllData(){
 
     document.getElementById("cinemaRegister").innerHTML="";
 }
-
+//en funksjon som skal validere om eposten inneholder @
 function verifiserEpost(epost){
     return epost.includes("@")
 
 }
+//funksjon som skal validere om telefonnummeret inneholder 8 tall
 function verifiserTelefonNummer(telefonnr){
     return /^[0-9]{8}$/.test(telefonnr);
 }
-
+// Funksjon for å registrere en person med kinobilletter
 function register(){
+    // Henter verdier fra inputfeltene
     const film =document.getElementById("filmvalg").value;
     const fornavn= document.getElementById("fornavn").value;
     const etternavn= document.getElementById("etternavn").value;
@@ -48,7 +57,7 @@ function register(){
     const epost=document.getElementById("epost").value;
 
 
-
+    // Henter referanser til feilmeldingselementene
     const filmError=document.getElementById("filmvalgError");
     const fornavnError=document.getElementById("fornavnError");
     const etternavnError=document.getElementById("etternavnError");
@@ -56,6 +65,7 @@ function register(){
     const antallError=document.getElementById("antallError");
     const epostError = document.getElementById("epostError")
 
+    // Nullstiller feilmeldinger før validering
     filmError.textContent="";
     fornavnError.textContent="";
     etternavnError.textContent="";
@@ -63,6 +73,7 @@ function register(){
     antallError.textContent="";
     epostError.textContent="";
 
+    //ulike valideringer for ikke fylte inputbokser og epost/telefonnummer som ikke samsvarer med krav
     if (!verifiserEpost(epost)){
         epostError.textContent= " Epost-adressen må inneholde '@' for å være gyldig";
         return;
@@ -101,6 +112,7 @@ function register(){
         isValid=false;
     }
 
+    //legger til personer i registeret hvis alle krav er godkjent
     if (isValid){
 
     const person={
@@ -113,7 +125,7 @@ function register(){
     };
     cinemaRegister.push(person);
 
-
+    // Nullstiller inputfeltene etter at personen er registrert
     document.getElementById("fornavn").value=" ";
     document.getElementById("etternavn").value=" ";
     document.getElementById("antall").value=" ";
