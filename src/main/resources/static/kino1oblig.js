@@ -35,6 +35,9 @@ function verifiserEpost(epost){
     return epost.includes("@")
 
 }
+function verifiserTelefonNummer(telefonnr){
+    return /^[0-9]{8}$/.test(telefonnr);
+}
 
 function register(){
     const film =document.getElementById("filmvalg").value;
@@ -62,6 +65,10 @@ function register(){
 
     if (!verifiserEpost(epost)){
         epostError.textContent= " Epost-adressen må inneholde '@' for å være gyldig";
+        return;
+    }
+    if (!verifiserTelefonNummer(telefonnr)){
+        telefonnrError.textContent="Telefonnummeret må inneholde 8 tall";
         return;
     }
 
