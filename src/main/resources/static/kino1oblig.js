@@ -46,6 +46,12 @@ function verifiserEpost(epost){
 function verifiserTelefonNummer(telefonnr){
     return /^[0-9]{8}$/.test(telefonnr);
 }
+function verifiserFornavn(fornavn){
+    return /^[a-zA-Z]+$/.test(fornavn);
+}
+function verifiserEtternavn(etternavn){
+    return /^[a-zA-Z]+$/.test(etternavn);
+}
 // Funksjon for å registrere en person med kinobilletter
 function register(){
     // Henter verdier fra inputfeltene
@@ -73,18 +79,10 @@ function register(){
     antallError.textContent="";
     epostError.textContent="";
 
-    //ulike valideringer for ikke fylte inputbokser og epost/telefonnummer som ikke samsvarer med krav
-    if (!verifiserEpost(epost)){
-        epostError.textContent= " Epost-adressen må inneholde '@' for å være gyldig";
-        return;
-    }
-    if (!verifiserTelefonNummer(telefonnr)){
-        telefonnrError.textContent="Telefonnummeret må inneholde 8 tall";
-        return;
-    }
-
-
     let isValid =true;
+
+    //ulike valideringer for ikke fylte inputbokser og epost,telefonnummer,fornavn og etternavn som ikke samsvarer med krav først kommer det
+    //meldinger ved tomme inputfelter og deretter kommer det feilmelding om kravene for validering er feil.
 
     if (film.trim()===""||film=== "Velg en Film" ){
         filmError.textContent=" Du har ikke valgt en av filmene"
@@ -94,13 +92,24 @@ function register(){
     if (fornavn.trim()=== ""){
         fornavnError.textContent="Fornavn påkrevd";
         isValid=false;
+    }else if (!verifiserFornavn(fornavn)){
+        fornavnError.textContent="Fornavn kan bare inneholde bokstaver";
+        isValid=false;
     }
+
     if (etternavn.trim()=== ""){
         etternavnError.textContent="etternavn påkrevd";
         isValid=false;
+    }else if (!verifiserEtternavn(etternavn)){
+        etternavnError.textContent="Etternavn kan bare inneholde bokstaver";
+        isValid=false;
     }
+
     if (telefonnr.trim()===""){
         telefonnrError.textContent="telefonnummer er påkrevd";
+        isValid=false;
+    }else if (!verifiserTelefonNummer(telefonnr)){
+        telefonnrError.textContent="Telefonnummeret må inneholde 8 tall";
         isValid=false;
     }
     if (antall.trim()<=0){
@@ -110,7 +119,15 @@ function register(){
     if (epost.trim()===""){
         epostError.textContent="Skriv inn epost";
         isValid=false;
+    }else if (!verifiserEpost(epost)){
+        epostError.textContent= " Epost-adressen må inneholde '@' for å være gyldig";
+        isValid=false;
     }
+
+
+
+
+
 
     //legger til personer i registeret hvis alle krav er godkjent
     if (isValid){
