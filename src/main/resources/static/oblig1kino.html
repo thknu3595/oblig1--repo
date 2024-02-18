@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Legger til JavaScript-filen kino1oblig.js -->
     <script src="kino1oblig.js"></script>
 
 </head>
 <body>
+<!-- Overskrift for billettbestillingssiden -->
 <h1>Cinema Ticket Booking</h1>
-
+<!-- Tabell for å samle inn billettdetaljer -->
 <table>
-
+    <!-- egen dropdown liste for filmvalg -->
     <tr><td>Velg Film:</td>
         <td><select id="filmvalg">
             <option>Velg en Film</option>
@@ -18,23 +20,28 @@
             <option>Cars</option>
             <option>Mowgli</option>
         </select>
+            <!-- Viser feilmelding for filmvalg -->
             <span id="filmvalgError"></span>
         </td></tr>
 
-
+    <!-- Rader for å legge inn kundeinformasjon -->
     <tr><td>Fornavn</td><td><input type="text" id="fornavn"/><span id="fornavnError"></span></td></tr>
     <tr><td>Etternavn</td><td><input type="text" id="etternavn"/><span id="etternavnError"></span></td></tr>
     <tr><td>Antall</td><td><input type="number" id="antall"/><span id="antallError"></span></td></tr>
     <tr><td>Telefonnr</td><td><input type="tel" id="telefonnr"/><span id="telefonnrError"></span></td></tr>
     <tr><td>Epost</td><td><input type="text" id="epost"/><span id="epostError"></span></td></tr>
 
+    <!-- Knapp for å kjøpe billeter -->
     <tr><td><button onclick="buyTicket()">Buy tickets</button></td></tr>
 </table>
 
+<!-- Overskrift for billettereservasjoner -->
 <h2>Ticket reservations</h2>
 
+<!-- Div-element for å vise billettereservasjoner -->
 <div id="cinemaRegister"></div>
 
+<!-- Knapp for å slette alle data -->
 <button onclick="deleteAllData()">Delete all data</button>
 
 </body>
